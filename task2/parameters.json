@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "loadBalancers_sparrowlb_name": {
+            "value": null
+        },
+        "virtualNetworks_sparrowvnet_name": {
+            "value": null
+        },
+        "publicIPAddresses_sparrowpip_name": {
+            "value": null
+        },
+        "virtualMachineScaleSets_sparrow_name": {
+            "value": null
+        },
+        "autoscalesettings_autoscaleHost_name": {
+            "value": null
+        },
+        "disks_sparrow_sparrow_0_OsDisk_1_20c34414118c40dca73947893afdc90c_externalid": {
+            "value": null
+        }
+    }
+}
