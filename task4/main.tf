@@ -1,6 +1,6 @@
 provider "google" {
   credentials = file("creds.json")
-  project     = "emerald-lattice-372320"
+  project     = "" # your project id
   region      = "us-central1"
   zone        = "us-central1-c"
 }
