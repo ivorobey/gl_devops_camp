@@ -1,5 +1,6 @@
 # LAMP stak on GCP by using terraform
 
+### Launch an instance in google using terraform and install the lamp stack using a script.
 ```
 terraform init 
 terraform plan
