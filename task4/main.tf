@@ -1,5 +1,5 @@
 provider "google" {
-  credentials = file("creds.json")
+  credentials = file("creds.json") #path tp your creds
   project     = "" # your project id
   region      = "us-central1"
   zone        = "us-central1-c"
