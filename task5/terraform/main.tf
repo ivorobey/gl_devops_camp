@@ -85,6 +85,7 @@ resource "local_file" "ssh_cfg" {
   filename = "../ansible/group_vars/all"
 }
 
+#create innventory
 resource "local_file" "hosts_cfg" {
   content = templatefile("../template/hosts.tpl",
     {
