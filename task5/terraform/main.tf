@@ -98,6 +98,6 @@ resource "local_file" "hosts_cfg" {
 }
 
 output "ubuntu_instance_public_ip" {
-  description = "PrivatIP of ubuntu instances"
+  description = "Public IP of ubuntu instances"
   value       = ["${aws_instance.ubuntu_instance.*.public_ip}"]
 }
