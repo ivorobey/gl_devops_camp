@@ -1,4 +1,4 @@
-resource "aws_instance" "moodle_server_instance" {
+resource "aws_instance" "grafana_server_instance" {
   ami                    = data.aws_ami.latest_ubuntu.id
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.grafana_sg.id]
@@ -22,7 +22,7 @@ data "aws_ami" "latest_ubuntu" {
 
 resource "aws_key_pair" "ssh_key" {
   key_name   = "grafana_key"
-  default = "~/.ssh/id_rsa.pub"
+  public_key = file(var.public_key)
 }
 
 
@@ -30,7 +30,7 @@ resource "aws_security_group" "grafana_sg" {
   name = "Grafana Sequrity Group"
 
   dynamic "ingress" {
-    for_each = ["80", "443", "22"]
+    for_each = ["80", "443", "3000", "22"]
     content {
       from_port   = ingress.value
       to_port     = ingress.value
