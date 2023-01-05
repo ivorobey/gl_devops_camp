@@ -1,4 +1,3 @@
-
 # Azure resource group
 resource "azurerm_resource_group" "grafana_rg" {
   name     = "Grafana_RG"
