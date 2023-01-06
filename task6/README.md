@@ -11,7 +11,7 @@
 
 ### AWS:
 ```
-Input your secrets in provider:
+Input your secrets provider:
   access_key = "put_access_key"
   secret_key = "put_secret_key"
 ```
@@ -21,7 +21,7 @@ Input your secrets in provider:
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 az login
 az ad sp create-for-rbac -n "somename" --role="Contributor" --scopes="/subscriptions/your_sub_id"
-Input your secrets in provider:
+Input your secrets provider:
   subscription_id = ""
   client_id       = ""
   client_secret   = ""
