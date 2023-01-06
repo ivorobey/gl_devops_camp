@@ -39,3 +39,5 @@ terraform destroy
 data_grafana.sh - This script will install everything needed to run grafana in a docker container
 ```
 ![image](https://user-images.githubusercontent.com/42977616/210903698-43cbf759-02bb-4647-8b5b-f426478c964d.png)
+
+#### P.S: grafana can be seen on port 3000
