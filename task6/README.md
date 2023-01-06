@@ -36,6 +36,6 @@ terraform destroy
 ```
 
 ```
-data_grafana.sh - start setup docker and start container with grafana
+data_grafana.sh - This script will install everything needed to run grafana in a docker container
 ```
 ![image](https://user-images.githubusercontent.com/42977616/210903698-43cbf759-02bb-4647-8b5b-f426478c964d.png)
