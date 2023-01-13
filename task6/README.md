@@ -12,8 +12,8 @@
 ### AWS:
 ```
 Input your secrets provider:
-  access_key = "put_access_key"
-  secret_key = "put_secret_key"
+  access_key = ""
+  secret_key = ""
 ```
 
 ### Azure:
