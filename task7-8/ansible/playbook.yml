@@ -1,0 +1,14 @@
+---
+- name: Do not use your username in password
+  hosts: all
+  become: yes
+
+  tasks:
+   - name: Install pwquality module for Ubuntu
+     apt: name=libpam-pwquality update_cache=yes state=latest
+
+   - name: Configuring PAM module to check if password contains the user name in some form and enforces pwquality checks on the root user password 
+     ansible.builtin.lineinfile:
+      path: /etc/security/pwquality.conf
+      line: usercheck = 1 
+            enforce_for_root
