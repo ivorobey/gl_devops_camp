@@ -1,0 +1,22 @@
+---
+version: "3.8"
+services:
+  public:
+    build: .
+    container_name: public
+    command: "sleep 1000" 
+    networks:
+      - private 
+      - public 
+  private:
+    build: .
+    container_name: private
+    command: "sleep 1000" 
+    networks:
+      - private
+networks:
+  private:
+    driver: bridge
+    internal: true
+  public:
+    driver: bridge

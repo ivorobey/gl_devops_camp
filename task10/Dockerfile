@@ -1,5 +1,2 @@
-# Pull the latest NGINX image
-FROM nginx:latest
-
-# Copy my index.hml to NGINX
-COPY index.html /usr/share/nginx/html/
+FROM ubuntu:22.04
+RUN apt update && apt install -y inetutils-ping
