@@ -21,12 +21,12 @@ B ) The second container ping the first container via a private network
 5. Report save in GitHub repository
 ```
 
-Task1
+### Task1
 docker build -t task1 .
 docker run  -d -p 8080:80 task1
 ![image](https://user-images.githubusercontent.com/42977616/215338200-c619a964-67ad-48c5-8c49-df019f529639.png)
 
 
-Task2
+### Task2
 docker-compose up -d
 ![image](https://user-images.githubusercontent.com/42977616/215339353-20710f6c-9bdd-47d4-9f21-72f6c34a4e44.png)
