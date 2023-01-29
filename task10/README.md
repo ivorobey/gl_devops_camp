@@ -28,3 +28,5 @@ docker run  -d -p 8080:80 task1
 
 
 Task2
+docker-compose up -d
+![image](https://user-images.githubusercontent.com/42977616/215339353-20710f6c-9bdd-47d4-9f21-72f6c34a4e44.png)
