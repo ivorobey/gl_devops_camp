@@ -22,6 +22,9 @@ B ) The second container ping the first container via a private network
 ```
 
 Task1
-
 docker build -t task1 .
 docker run  -d -p 8080:80 task1
+![image](https://user-images.githubusercontent.com/42977616/215338200-c619a964-67ad-48c5-8c49-df019f529639.png)
+
+
+Task2
