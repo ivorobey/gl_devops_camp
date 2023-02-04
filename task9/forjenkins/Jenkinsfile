@@ -29,7 +29,7 @@ pipeline {
       }
       stage ('Notification on Telegram') {
          steps {
-            telegramSend 'Deploy on branch DEV was SUCCESS'
+            telegramSend 'Deploy on branch MAIN was SUCCESS'
             
          }
       }
