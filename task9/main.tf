@@ -5,6 +5,19 @@ provider "aws" {
   region     = "us-east-1"
 }
 
+resource "aws_instance" "grafana_server_instance" {
+  ami                    = data.aws_ami.latest_ubuntu.id
+  instance_type          = "t2.micro"
+  vpc_security_group_ids = [aws_security_group.grafana_sg.id]
+  key_name               = aws_key_pair.ssh_key.key_name
+  user_data              = file("data_grafana.sh")
+
+  tags = {
+    Name  = "Grafana WebServer build by Terraform"
+    Owner = "Sparrow"
+  }
+}
+
 data "aws_ami" "latest_ubuntu" {
   owners      = ["099720109477"]
   most_recent = true
@@ -14,82 +27,17 @@ data "aws_ami" "latest_ubuntu" {
   }
 }
 
-resource "aws_instance" "jenkins_server_instance" {
-  ami                    = data.aws_ami.latest_ubuntu.id
-  instance_type          = "t2.small"
-  vpc_security_group_ids = [aws_security_group.jenkins_sg.id]
-  key_name               = aws_key_pair.jenkinskey.key_name
-
-  root_block_device {
-    volume_size = "10"
-    volume_type = "gp2"
-  }
-
-  connection {
-    type        = "ssh"
-    host        = "${self.public_ip}"
-    user        = "ec2-user"
-    private_key = tls_private_key.rsa.private_key_pem
-  }
-
-provisioner "file" {
-        source      = "data/Dockerfile"
-        destination = "/tmp/Dockerfile"
-    }
-
-provisioner "file" {
-        source      = "data/jenkins-plugins"
-        destination = "/tmp/jenkins-plugins"
-    }
-
-
-provisioner "file" {
-        source      = "data/default-user.groovy"
-        destination = "/tmp/default-user.groovy"
-    }
-
-
-provisioner "remote-exec" {
-        inline = [
-
-            "sudo yum update -y",
-            "sudo service docker start",
-            "cd /tmp",
-            "cd /tmp && sudo docker build -t jenkins:jcasc .",
-            "sudo docker run -d --name jenkins -p 8080:8080 jenkins:jcasc",
-      
-        ]
-
-              }
-
-  tags = {
-    Name  = "Jenkins WebServer build by Terraform"
-    Owner = "Sparrow"
-  }
-  
+resource "aws_key_pair" "ssh_key" {
+  key_name   = "grafana_key"
+  public_key = file(var.public_key)
 }
 
 
-resource "aws_key_pair" "jenkinskey" {
-  key_name   = "jenkinskey"
-  public_key = tls_private_key.rsa.public_key_openssh
-}
-
-resource "tls_private_key" "rsa" {
-  algorithm = "RSA"
-  rsa_bits  = 4096
-}
-
-resource "local_file" "TF-key" {
-  content  = tls_private_key.rsa.private_key_pem
-  filename = "jenkinskey.pem"
-}
-
-resource "aws_security_group" "jenkins_sg" {
-  name = "Jenkins Sequrity Group"
+resource "aws_security_group" "grafana_sg" {
+  name = "Grafana Sequrity Group"
 
   dynamic "ingress" {
-    for_each = ["22", "80", "8080"]
+    for_each = ["80", "443", "3000", "22"]
     content {
       from_port   = ingress.value
       to_port     = ingress.value
@@ -106,7 +54,7 @@ resource "aws_security_group" "jenkins_sg" {
   }
 
   tags = {
-    Name  = "Jenkins Sequrity Group"
+    Name  = "Grafana Sequrity Group"
     Owner = "Sparrow"
   }
 }
