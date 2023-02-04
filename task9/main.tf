@@ -110,9 +110,3 @@ resource "aws_security_group" "jenkins_sg" {
     Owner = "Sparrow"
   }
 }
-
-
-output "instance_public_ip" {
-  description = "Public IP of EC2 instance"
-  value       = aws_instance.jenkins_server_instance.public_ip
-}
