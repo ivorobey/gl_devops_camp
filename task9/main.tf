@@ -1,8 +1,8 @@
 
 provider "aws" {
-  access_key = "" # insert your access_key here
-  secret_key = "" # insert your secret_key here  
-  region     = "us-east-1"
+  access_key = "" # insert your access_key 
+  secret_key = "" # insert your secret_key   
+  region     = "" # insert your region
 }
 
 resource "aws_instance" "jenkins_server_instance" {
