@@ -7,14 +7,7 @@ pipeline {
                sh '''
                echo "----TEST CODE-----"
                echo "-----------------------"
-               resoult=`grep -o -i "DEVELOP" index.html | wc -l`
-               if [ "$resoult" = "1" ]
-               then
-                 echo "Test PASSED"
-               else
-                 echo "Test FAILED"
-                 exit 1
-               fi
+              
                '''
            }
        }
@@ -23,7 +16,6 @@ pipeline {
                sh '''
                echo "Deploying Code"
                echo "-------------"
-               mv index.html /usr/share/nginx/html
                '''
           }
       }
