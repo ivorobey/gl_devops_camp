@@ -16,7 +16,7 @@ Second, get content via curl from an external port (NodePort)
 
 ```
 
-###2
+### 2
 ```
 kubectl create ns globallogic
 namespace/globallogic created
@@ -32,7 +32,7 @@ kube-system        Active   2d15h
 tigera-operator    Active   2d15h
 ```
 
-###3
+### 3
 
 ```
 kubectl apply -f deployment.yaml -n globallogic
@@ -74,9 +74,9 @@ Events:
   Normal  ScalingReplicaSet  91s   deployment-controller  Scaled up replica set nginx-deployment-6b7f675859 to 3
 ```
 
-###4
+### 4
 ```
-#kubectl get svc -n globallogic
+kubectl get svc -n globallogic
 NAME               TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
 nginx-cluster-ip   ClusterIP   10.107.233.173   <none>        80/TCP         32s
 nginx-node-port    NodePort    10.101.42.28     <none>        80:31000/TCP   32s
@@ -114,7 +114,7 @@ Commercial support is available at
 
 ```
 
-###5
+### 5
 ```
 kubectl describe cronjobs cronjob-nginx -n globallogic
 Name:                          cronjob-nginx
