@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: curl-nodeport-job
+  namespace: globallogic
+spec:
+  template:
+    spec:
+      containers:
+      - name: curl
+        image: curlimages/curl
+        command: ['curl', '10.101.42.28:31000']
+      restartPolicy: OnFailure

@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: curl-clusterip-job
+  namespace: globallogic
+spec:
+  template:
+    spec:
+      containers:
+      - name: curl
+        image: curlimages/curl
+        command: ['curl', '10.107.233.173']
+      restartPolicy: OnFailure

@@ -1,0 +1,209 @@
+kubectl get nodes -o wide
+NAME         STATUS   ROLES           AGE     VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION    CONTAINER-RUNTIME
+kubemaster   Ready    control-plane   2d15h   v1.26.1   10.128.0.2    <none>        Ubuntu 20.04.5 LTS   5.15.0-1027-gcp   containerd://1.6.16
+kubenode     Ready    worker          2d15h   v1.26.1   10.128.0.3    <none>        Ubuntu 20.04.5 LTS   5.15.0-1027-gcp   containerd://1.6.16
+
+kubectl describe node kubemaster
+Name:               kubemaster
+Roles:              control-plane
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=kubemaster
+                    kubernetes.io/os=linux
+                    node-role.kubernetes.io/control-plane=
+                    node.kubernetes.io/exclude-from-external-load-balancers=
+Annotations:        csi.volume.kubernetes.io/nodeid: {"csi.tigera.io":"kubemaster"}
+                    kubeadm.alpha.kubernetes.io/cri-socket: unix:///var/run/containerd/containerd.sock
+                    node.alpha.kubernetes.io/ttl: 0
+                    projectcalico.org/IPv4Address: 10.128.0.2/32
+                    projectcalico.org/IPv4VXLANTunnelAddr: 192.168.141.0
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Sun, 05 Feb 2023 20:06:17 +0000
+Taints:             node-role.kubernetes.io/control-plane:NoSchedule
+Unschedulable:      false
+Lease:
+  HolderIdentity:  kubemaster
+  AcquireTime:     <unset>
+  RenewTime:       Wed, 08 Feb 2023 11:56:05 +0000
+Conditions:
+  Type                 Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----                 ------  -----------------                 ------------------                ------                       -------
+  NetworkUnavailable   False   Wed, 08 Feb 2023 11:48:13 +0000   Wed, 08 Feb 2023 11:48:13 +0000   CalicoIsUp                   Calico is running on this node
+  MemoryPressure       False   Wed, 08 Feb 2023 11:53:14 +0000   Sun, 05 Feb 2023 20:06:16 +0000   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Wed, 08 Feb 2023 11:53:14 +0000   Sun, 05 Feb 2023 20:06:16 +0000   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Wed, 08 Feb 2023 11:53:14 +0000   Sun, 05 Feb 2023 20:06:16 +0000   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Wed, 08 Feb 2023 11:53:14 +0000   Sun, 05 Feb 2023 20:16:14 +0000   KubeletReady                 kubelet is posting ready status. AppArmor enabled
+Addresses:
+  InternalIP:  10.128.0.2
+  Hostname:    kubemaster
+Capacity:
+  cpu:                4
+  ephemeral-storage:  20134592Ki
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             8136984Ki
+  pods:               110
+Allocatable:
+  cpu:                4
+  ephemeral-storage:  18556039957
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             8034584Ki
+  pods:               110
+System Info:
+  Machine ID:                 3d9dfeaea04b00dbfb437c1b258835b9
+  System UUID:                3d9dfeae-a04b-00db-fb43-7c1b258835b9
+  Boot ID:                    1b9a7a43-b28a-41f8-b598-e50b5d01f387
+  Kernel Version:             5.15.0-1027-gcp
+  OS Image:                   Ubuntu 20.04.5 LTS
+  Operating System:           linux
+  Architecture:               amd64
+  Container Runtime Version:  containerd://1.6.16
+  Kubelet Version:            v1.26.1
+  Kube-Proxy Version:         v1.26.1
+PodCIDR:                      192.168.0.0/24
+PodCIDRs:                     192.168.0.0/24
+Non-terminated Pods:          (8 in total)
+  Namespace                   Name                                  CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                                  ------------  ----------  ---------------  -------------  ---
+  calico-apiserver            calico-apiserver-5d857bb95d-568wb     0 (0%)        0 (0%)      0 (0%)           0 (0%)         2d15h
+  calico-system               calico-node-l4d42                     0 (0%)        0 (0%)      0 (0%)           0 (0%)         2d15h
+  calico-system               csi-node-driver-l8lgv                 0 (0%)        0 (0%)      0 (0%)           0 (0%)         2d15h
+  kube-system                 etcd-kubemaster                       100m (2%)     0 (0%)      100Mi (1%)       0 (0%)         2d15h
+  kube-system                 kube-apiserver-kubemaster             250m (6%)     0 (0%)      0 (0%)           0 (0%)         2d15h
+  kube-system                 kube-controller-manager-kubemaster    200m (5%)     0 (0%)      0 (0%)           0 (0%)         2d15h
+  kube-system                 kube-proxy-csgc2                      0 (0%)        0 (0%)      0 (0%)           0 (0%)         2d15h
+  kube-system                 kube-scheduler-kubemaster             100m (2%)     0 (0%)      0 (0%)           0 (0%)         2d15h
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests    Limits
+  --------           --------    ------
+  cpu                650m (16%)  0 (0%)
+  memory             100Mi (1%)  0 (0%)
+  ephemeral-storage  0 (0%)      0 (0%)
+  hugepages-1Gi      0 (0%)      0 (0%)
+  hugepages-2Mi      0 (0%)      0 (0%)
+Events:
+  Type     Reason                   Age                    From             Message
+  ----     ------                   ----                   ----             -------
+  Normal   Starting                 2d15h                  kube-proxy       
+  Normal   Starting                 7m57s                  kube-proxy       
+  Normal   Starting                 2d15h                  kubelet          Starting kubelet.
+  Warning  InvalidDiskCapacity      2d15h                  kubelet          invalid capacity 0 on image filesystem
+  Normal   NodeHasSufficientMemory  2d15h (x4 over 2d15h)  kubelet          Node kubemaster status is now: NodeHasSufficientMemory
+  Normal   NodeHasNoDiskPressure    2d15h (x3 over 2d15h)  kubelet          Node kubemaster status is now: NodeHasNoDiskPressure
+  Normal   NodeHasSufficientPID     2d15h (x3 over 2d15h)  kubelet          Node kubemaster status is now: NodeHasSufficientPID
+  Normal   NodeAllocatableEnforced  2d15h                  kubelet          Updated Node Allocatable limit across pods
+  Normal   NodeHasSufficientMemory  2d15h                  kubelet          Node kubemaster status is now: NodeHasSufficientMemory
+  Warning  InvalidDiskCapacity      2d15h                  kubelet          invalid capacity 0 on image filesystem
+  Normal   NodeHasNoDiskPressure    2d15h                  kubelet          Node kubemaster status is now: NodeHasNoDiskPressure
+  Normal   NodeHasSufficientPID     2d15h                  kubelet          Node kubemaster status is now: NodeHasSufficientPID
+  Normal   NodeAllocatableEnforced  2d15h                  kubelet          Updated Node Allocatable limit across pods
+  Normal   Starting                 2d15h                  kubelet          Starting kubelet.
+  Normal   RegisteredNode           2d15h                  node-controller  Node kubemaster event: Registered Node kubemaster in Controller
+  Normal   NodeReady                2d15h                  kubelet          Node kubemaster status is now: NodeReady
+  Normal   Starting                 8m14s                  kubelet          Starting kubelet.
+  Warning  InvalidDiskCapacity      8m14s                  kubelet          invalid capacity 0 on image filesystem
+  Normal   NodeAllocatableEnforced  8m10s                  kubelet          Updated Node Allocatable limit across pods
+  Normal   NodeHasNoDiskPressure    8m8s (x7 over 8m14s)   kubelet          Node kubemaster status is now: NodeHasNoDiskPressure
+  Normal   NodeHasSufficientPID     8m8s (x7 over 8m14s)   kubelet          Node kubemaster status is now: NodeHasSufficientPID
+  Normal   NodeHasSufficientMemory  8m7s (x8 over 8m14s)   kubelet          Node kubemaster status is now: NodeHasSufficientMemory
+  Normal   RegisteredNode           7m32s                  node-controller  Node kubemaster event: Registered Node kubemaster in Controller
+
+kubectl describe node kubenode
+Name:               kubenode
+Roles:              worker
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=kubenode
+                    kubernetes.io/os=linux
+                    node-role.kubernetes.io/worker=worker
+Annotations:        csi.volume.kubernetes.io/nodeid: {"csi.tigera.io":"kubenode"}
+                    kubeadm.alpha.kubernetes.io/cri-socket: unix:///var/run/containerd/containerd.sock
+                    node.alpha.kubernetes.io/ttl: 0
+                    projectcalico.org/IPv4Address: 10.128.0.3/32
+                    projectcalico.org/IPv4VXLANTunnelAddr: 192.168.188.192
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Sun, 05 Feb 2023 20:08:22 +0000
+Taints:             <none>
+Unschedulable:      false
+Lease:
+  HolderIdentity:  kubenode
+  AcquireTime:     <unset>
+  RenewTime:       Wed, 08 Feb 2023 11:56:55 +0000
+Conditions:
+  Type                 Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----                 ------  -----------------                 ------------------                ------                       -------
+  NetworkUnavailable   False   Wed, 08 Feb 2023 11:48:16 +0000   Wed, 08 Feb 2023 11:48:16 +0000   CalicoIsUp                   Calico is running on this node
+  MemoryPressure       False   Wed, 08 Feb 2023 11:53:11 +0000   Sun, 05 Feb 2023 20:08:22 +0000   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Wed, 08 Feb 2023 11:53:11 +0000   Sun, 05 Feb 2023 20:08:22 +0000   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Wed, 08 Feb 2023 11:53:11 +0000   Sun, 05 Feb 2023 20:08:22 +0000   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Wed, 08 Feb 2023 11:53:11 +0000   Sun, 05 Feb 2023 20:16:12 +0000   KubeletReady                 kubelet is posting ready status. AppArmor enabled
+Addresses:
+  InternalIP:  10.128.0.3
+  Hostname:    kubenode
+Capacity:
+  cpu:                4
+  ephemeral-storage:  20134592Ki
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             8136992Ki
+  pods:               110
+Allocatable:
+  cpu:                4
+  ephemeral-storage:  18556039957
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             8034592Ki
+  pods:               110
+System Info:
+  Machine ID:                 9586073ed9ad09bdbb6762ad05b065cf
+  System UUID:                9586073e-d9ad-09bd-bb67-62ad05b065cf
+  Boot ID:                    86fb44cc-73ff-4325-8a3e-5ca8f8e233e0
+  Kernel Version:             5.15.0-1027-gcp
+  OS Image:                   Ubuntu 20.04.5 LTS
+  Operating System:           linux
+  Architecture:               amd64
+  Container Runtime Version:  containerd://1.6.16
+  Kubelet Version:            v1.26.1
+  Kube-Proxy Version:         v1.26.1
+PodCIDR:                      192.168.1.0/24
+PodCIDRs:                     192.168.1.0/24
+Non-terminated Pods:          (9 in total)
+  Namespace                   Name                                        CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                                        ------------  ----------  ---------------  -------------  ---
+  calico-apiserver            calico-apiserver-5d857bb95d-xtwzr           0 (0%)        0 (0%)      0 (0%)           0 (0%)         2d15h
+  calico-system               calico-kube-controllers-6b7b9c649d-dkmfn    0 (0%)        0 (0%)      0 (0%)           0 (0%)         2d15h
+  calico-system               calico-node-ntpf9                           0 (0%)        0 (0%)      0 (0%)           0 (0%)         2d15h
+  calico-system               calico-typha-77d9fdd546-x44m2               0 (0%)        0 (0%)      0 (0%)           0 (0%)         2d15h
+  calico-system               csi-node-driver-7pwn7                       0 (0%)        0 (0%)      0 (0%)           0 (0%)         2d15h
+  kube-system                 coredns-787d4945fb-786q7                    100m (2%)     0 (0%)      70Mi (0%)        170Mi (2%)     2d15h
+  kube-system                 coredns-787d4945fb-bwn7q                    100m (2%)     0 (0%)      70Mi (0%)        170Mi (2%)     2d15h
+  kube-system                 kube-proxy-56hjq                            0 (0%)        0 (0%)      0 (0%)           0 (0%)         2d15h
+  tigera-operator             tigera-operator-54b47459dd-9kmr7            0 (0%)        0 (0%)      0 (0%)           0 (0%)         2d15h
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests    Limits
+  --------           --------    ------
+  cpu                200m (5%)   0 (0%)
+  memory             140Mi (1%)  340Mi (4%)
+  ephemeral-storage  0 (0%)      0 (0%)
+  hugepages-1Gi      0 (0%)      0 (0%)
+  hugepages-2Mi      0 (0%)      0 (0%)
+Events:
+  Type     Reason                   Age                    From             Message
+  ----     ------                   ----                   ----             -------
+  Normal   Starting                 2d15h                  kube-proxy       
+  Normal   Starting                 8m49s                  kube-proxy       
+  Normal   NodeHasSufficientMemory  2d15h (x8 over 2d15h)  kubelet          Node kubenode status is now: NodeHasSufficientMemory
+  Normal   RegisteredNode           2d15h                  node-controller  Node kubenode event: Registered Node kubenode in Controller
+  Normal   NodeReady                2d15h                  kubelet          Node kubenode status is now: NodeReady
+  Normal   Starting                 9m8s                   kubelet          Starting kubelet.
+  Warning  InvalidDiskCapacity      9m8s                   kubelet          invalid capacity 0 on image filesystem
+  Normal   NodeAllocatableEnforced  9m4s                   kubelet          Updated Node Allocatable limit across pods
+  Normal   NodeHasNoDiskPressure    9m2s (x7 over 9m8s)    kubelet          Node kubenode status is now: NodeHasNoDiskPressure
+  Normal   NodeHasSufficientPID     9m2s (x7 over 9m8s)    kubelet          Node kubenode status is now: NodeHasSufficientPID
+  Normal   NodeHasSufficientMemory  8m56s (x8 over 9m8s)   kubelet          Node kubenode status is now: NodeHasSufficientMemory
+  Normal   RegisteredNode           8m26s                  node-controller  Node kubenode event: Registered Node kubenode in Controller
