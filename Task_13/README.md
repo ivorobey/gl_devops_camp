@@ -41,3 +41,4 @@ Ingress (which will be connected to ClusterIssuer and use the letsencrypt certif
 ```
 kubectl apply -f deployment.yaml
 ```
+![image](https://user-images.githubusercontent.com/42977616/218331142-a1854fde-3ad4-4ff7-8904-8ae74b8ddcf6.png)
