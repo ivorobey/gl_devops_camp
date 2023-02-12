@@ -1,62 +1,64 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginxserver
+  name: nginx-deployment
   labels:
     app: nginx
 spec:
-  replicas:
+  replicas: 3
   selector:
     matchLabels:
-      app.kubernetes.io/name: nginxserver
+      app: nginx
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: nginxserver
+        app: nginx
     spec:
       containers:
-      - name: nginx
+      - name: nginx-site
         image: nginx:latest
         ports:
         - containerPort: 80
-          name: http-web-svc
----
 
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginxservice
+  name: my-cluster-ip
 spec:
+  type: ClusterIP
   selector:
-    app.kubernetes.io/name: nginxserver
+    app: nginx
   ports:
-  - name: nginxservicep
-    protocol: TCP
-    port: 80
-    targetPort: http-web-svc
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
 ---
 
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginxservice
+  name: main-ingress
   annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-
 spec:
   tls:
   - hosts:
     - sparrow.v6.rocks
-    secretName: mytls
+    secretName: app-tls
   rules:
-  - host: sparrow.v6.rocks
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: nginx
-            port:
-              number: 80
+   - host: sparrow.v6.rocks
+     http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: my-cluster-ip
+                port: 
+                  number: 80
+
+
+
