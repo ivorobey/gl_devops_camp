@@ -11,13 +11,13 @@ spec:
   tls:
   - hosts:
     - {{ .Values.host }}
-    secretName: app-tls
+    secretName: someapp-tls
   rules:
   - host: {{ .Values.host }}
     http:
       paths:
-      - path: /{{ .Release.Name }}
-        pathType: Prefix
+      - pathType: Prefix
+        path: /{{ .Release.Name }}
         backend:
           service:
             name: {{ .Release.Name }}-service
