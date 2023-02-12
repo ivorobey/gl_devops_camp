@@ -13,3 +13,11 @@ ansible-playbook -i inventory/mycluster/inventory.ini --private-key /pem/id_rsa 
 ssh -i /pathtokey/id_rsa YOUR_VM_IP
 ```
 ![image](https://user-images.githubusercontent.com/42977616/218325029-8bd984e9-ecc4-43c1-b5a9-974ce98ad503.png)
+
+Install Ingress-controller
+
+```
+kubectl apply -f nginx-ctl.yaml
+kubectl apple -f path_provisioner.yml
+```
+![image](https://user-images.githubusercontent.com/42977616/218326198-b257a302-53ca-48ca-ae7e-1d2926b2ec33.png)
