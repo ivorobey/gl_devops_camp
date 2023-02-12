@@ -10,7 +10,7 @@ spec:
   tls:
   - hosts:
     - {{ .Values.host }}
-    secretName: pacmanapp-tls
+    secretName: app-tls
   rules:
   - host: {{ .Values.host }}
     http:
