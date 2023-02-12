@@ -3,4 +3,4 @@ container:
 
 replicaCount: 3
 
-host: glsparrow.v6.navy
+host: sparrow.v6.rocks

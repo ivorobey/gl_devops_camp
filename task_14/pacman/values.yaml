@@ -3,4 +3,4 @@ container:
 
 replicaCount: 3
 
-host: sparrowpacman.v6.rocks
+host: sparrow.v6.rocks

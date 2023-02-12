@@ -11,7 +11,7 @@ spec:
   tls:
   - hosts:
     - {{ .Values.host }}
-    secretName: nginxapp-tls
+    secretName: app-tls
   rules:
   - host: {{ .Values.host }}
     http:
