@@ -1,0 +1,8 @@
+# Deployment values
+replicaCount: 3
+container:
+  image: nginx:latest
+  port: 80
+domain: sparrow.v6.rocks
+# Ingress
+issuerName: letsencrypt-prod
