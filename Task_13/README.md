@@ -21,3 +21,6 @@ kubectl apply -f nginx-ctl.yaml
 kubectl apple -f path_provisioner.yml
 ```
 ![image](https://user-images.githubusercontent.com/42977616/218326198-b257a302-53ca-48ca-ae7e-1d2926b2ec33.png)
+
+Prepare domain name (free resource https://dynv6.com/ )
+![image](https://user-images.githubusercontent.com/42977616/218327678-003907bf-111a-4485-a8e7-b713bc7330b1.png)
