@@ -25,3 +25,8 @@ kubectl apple -f path_provisioner.yml
 Prepare domain name (free resource https://dynv6.com/ )
 
 ![image](https://user-images.githubusercontent.com/42977616/218327678-003907bf-111a-4485-a8e7-b713bc7330b1.png)
+
+Configure cert-manager (https://cert-manager.io/) with Letsencrypt.
+```
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.11.0/cert-manager.yaml
+```
