@@ -29,4 +29,15 @@ Prepare domain name (free resource https://dynv6.com/ )
 Configure cert-manager (https://cert-manager.io/) with Letsencrypt.
 ```
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.11.0/cert-manager.yaml
+
+kubectl apply -f letsencript.yaml
+```
+
+Prepare Nginx deployment:
+Deployment
+Service
+Ingress (which will be connected to ClusterIssuer and use the letsencrypt certificate)
+
+```
+kubectl apply -f deployment.yaml
 ```
