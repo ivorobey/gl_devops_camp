@@ -10,7 +10,7 @@ spec:
   tls:
   - hosts:
     - {{ .Values.domain }}
-    secretName: app-tls
+    secretName: oneapp-tls
   rules:
   - host: {{ .Values.domain }}
     http:
