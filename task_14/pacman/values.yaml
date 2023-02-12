@@ -1,5 +1,6 @@
+
 container:
-  image: golucky5/pacman
+  image: golucky5/pacman:latest
 
 replicaCount: 3
 

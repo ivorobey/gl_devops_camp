@@ -1,6 +1,6 @@
-apiVersion: v2
+apiVersion : v2
 name       : Pacman
-description: My Pacman for Kubernetes
+description: Setup Pacman wia Helm on K8s cluster
 type       : application
 version    : 0.1.0
 appVersion : "1.0.0"

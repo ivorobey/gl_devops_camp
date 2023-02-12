@@ -1,6 +1,7 @@
+
 container:
   image: nginx:latest
 
 replicaCount: 3
 
-host: sparrow.v6.rocks
+host: glsparrow.v6.navy

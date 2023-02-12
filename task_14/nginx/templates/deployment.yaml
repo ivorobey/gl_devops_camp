@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-web
+  name: {{ .Release.Name }}-app
   labels:
     app: {{ .Release.Name }}
 spec:
@@ -15,7 +15,7 @@ spec:
         app: {{ .Release.Name }}
     spec:
       containers:
-      - name: {{ .Release.Name }}-web
+      - name: {{ .Release.Name }}-app
         image: {{ .Values.container.image }}
         ports:
         - containerPort: 80

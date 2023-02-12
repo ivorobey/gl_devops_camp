@@ -1,8 +1,7 @@
-apiVersion: v2
+apiVersion : v2
 name       : Nginx
-description: My Nginx for Kubernetes
+description: Setup Nginx wia Helm on K8s cluster
 type       : application
 version    : 0.1.0
-appVersion : "1.0"
-
+appVersion : "1.0.0"
 
