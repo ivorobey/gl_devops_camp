@@ -1,7 +1,6 @@
-replicaCount: 1
 container:
   image: golucky5/pacman
-  port: 80
-domain: sparrowpacman.v6.rocks
 
-issuerName: letsencrypt-prod
+replicaCount: 3
+
+host: sparrowpacman.v6.rocks

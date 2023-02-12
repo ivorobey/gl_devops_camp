@@ -1,6 +1,6 @@
-replicaCount: 3
 container:
   image: nginx:latest
-  port: 80
-domain: glsparrow.v6.navy
-issuerName: letsencrypt-prod
+
+replicaCount: 3
+
+host: glsparrow.v6.navy
