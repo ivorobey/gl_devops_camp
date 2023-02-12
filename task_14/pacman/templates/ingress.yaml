@@ -10,12 +10,12 @@ spec:
   tls:
   - hosts:
     - {{ .Values.host }}
-    secretName: app-tls
+    secretName: pacmanapp-tls
   rules:
   - host: {{ .Values.host }}
     http:
       paths:
-      - path: /
+      - path: /{{ .Release.Name }}
         pathType: Prefix
         backend:
           service:
