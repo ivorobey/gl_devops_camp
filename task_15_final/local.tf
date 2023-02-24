@@ -1,10 +1,30 @@
 # The null_resource is a resource that allows you to configure provisioners that are not directly associated with a single existing resource.
+resource "local_file" "ssh_cfg" {
+  content = templatefile("${path.module}/tpl/ansible/node.tpl",
+    {
+      user = "${var.ssh_username}"
+      ssh  = "/home/${var.ssh_username}/.ssh/id_rsa"
+    }
+  )
+  filename   = "ansible/group_vars/node"
+  depends_on = [google_compute_instance.k8s, google_sql_database_instance.instance]
+}
+resource "local_file" "hosts_cfg" {
+  content = templatefile("${path.module}/tpl/ansible/hosts.tpl",
+    {
+      web_public_ip = google_compute_instance.k8s.network_interface[0].access_config[0].nat_ip
+    }
+  )
+  filename   = "ansible/hosts.cfg"
+  depends_on = [google_compute_instance.k8s]
+}
+
 # KUBESPRAY
 resource "null_resource" "clone_kubespray" {
   provisioner "local-exec" {
     command = "git clone https://github.com/kubernetes-sigs/kubespray.git; cd kubespray; git checkout release-2.20; cp -rfp inventory/sample inventory/mycluster"
   }
-  depends_on = [null_resource.hardening]
+  depends_on = [local_file.hosts_cfg, local_file.ssh_cfg]
 }
 
 resource "local_file" "inventory_tpl" {

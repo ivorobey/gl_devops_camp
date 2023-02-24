@@ -8,7 +8,7 @@ resource "google_sql_database_instance" "instance" {
 
     ip_configuration {
       ipv4_enabled                                  = false
-      private_network                               = google_compute_network.custom-network.id
+      private_network                               = google_compute_network.ownnetwork.id
       enable_private_path_for_google_cloud_services = true
       authorized_networks {
         name  = "wordpress"
