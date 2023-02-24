@@ -1,6 +1,6 @@
 resource "google_sql_database_instance" "instance" {
   name             = "my-database-instance"
-  region           = "us-west1"
+  region           = "us-central1"
   database_version = "MYSQL_8_0"
   depends_on       = [google_service_networking_connection.private_vpc_connection]
   settings {
