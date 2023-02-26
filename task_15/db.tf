@@ -11,7 +11,7 @@ resource "google_sql_database_instance" "instance" {
       private_network                               = google_compute_network.ownnetwork.id
       enable_private_path_for_google_cloud_services = true
       authorized_networks {
-        name  = "wordpress"
+        name  = "wordpres"
         value = google_compute_instance.k8s.network_interface[0].access_config[0].nat_ip
       }
 
@@ -21,12 +21,12 @@ resource "google_sql_database_instance" "instance" {
   deletion_protection = "false"
 }
 resource "google_sql_database" "database" {
-  name     = "wordpress"
+  name     = "wordpres"
   instance = google_sql_database_instance.instance.name
 }
 
 resource "google_sql_user" "user" {
-  name     = "wordpress"
-  password = "wordpress"
+  name     = "wordpres"
+  password = "wordpres"
   instance = google_sql_database_instance.instance.name
 }
