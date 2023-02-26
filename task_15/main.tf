@@ -35,7 +35,7 @@ resource "google_compute_subnetwork" "own-subnetwork" {
 # Instance Web
 resource "google_compute_instance" "k8s" {
   name         = "k8s-server"
-  machine_type = "e2-custom-6-20480"
+  machine_type = "e2-custom-4-16384"
   tags         = ["ssh", "http-server", "https-server"]
   metadata = {
     ssh-keys = "${var.ssh_username}:${file("/home/${var.ssh_username}/.ssh/id_rsa.pub")}"
@@ -67,7 +67,7 @@ resource "google_compute_firewall" "allow-http" {
 
   allow {
     protocol = "tcp"
-    ports    = ["80", "443"]
+    ports    = ["80", "443", "8080"]
   }
 
   source_ranges = ["0.0.0.0/0"]

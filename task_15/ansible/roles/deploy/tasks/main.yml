@@ -4,14 +4,17 @@
     name: helm
     classic: true
 
-- name: Creates directory .kube/
-  shell: mkdir ~/.kube
+- name: Create a directory kube
+  ansible.builtin.file:
+    path: /home/sparrow/.kube
+    state: directory
 
-- name: Copy admin.conf
-  shell: sudo cp /etc/kubernetes/admin.conf ~/.kube/config
-
-- name: Verify Permissions on .kube/config
-  shell: sudo chmod 777 ~/.kube/config
+- name: Copy admin file
+  ansible.builtin.copy:
+    src: /etc/kubernetes/admin.conf
+    dest: /home/sparrow/.kube/config
+    remote_src: yes
+    mode: '0777'
 
 - name: Deploy cert-manager
   ansible.builtin.shell:
