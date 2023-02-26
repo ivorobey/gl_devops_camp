@@ -17,6 +17,7 @@ For performing all of those steps the techs needed are:
 - Terraform
 - Ansible
 - Kubernetes cluster
+- Prepare domain name (free resource https://dynv6.com/ )
 - GCP account:
   - with access to the CC resources
   - service account with right permissions
