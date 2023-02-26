@@ -5,20 +5,13 @@
     classic: true
 
 - name: Creates directory .kube/
-  ansible.builtin.file:
-    path: .kube/
-    state: directory
+  shell: mkdir ~/.kube
 
 - name: Copy admin.conf
-  ansible.builtin.copy:
-      remote_src: yes
-      src: /etc/kubernetes/admin.conf
-      dest: .kube/config
+  shell: sudo cp /etc/kubernetes/admin.conf ~/.kube/config
 
 - name: Verify Permissions on .kube/config
-  ansible.builtin.file:
-    path: .kube/config
-    mode: '0777'
+  shell: sudo chmod 777 ~/.kube/config
 
 - name: Deploy cert-manager
   ansible.builtin.shell:
@@ -39,7 +32,6 @@
   ansible.builtin.copy:
       src: wordpress/
       dest: wordpress/
-      backup: yes
 
 - name: Verify Permissions on wordpress/
   ansible.builtin.file:
