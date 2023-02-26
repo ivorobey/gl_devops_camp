@@ -8,7 +8,7 @@ resource "google_sql_database_instance" "instance" {
 
     ip_configuration {
       ipv4_enabled                                  = false
-      private_network                               = google_compute_network.ownnetwork.id
+      private_network                               = google_compute_network.own-network.id
       enable_private_path_for_google_cloud_services = true
       authorized_networks {
         name  = "wordpres"
